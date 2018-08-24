@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * @Author: zhangyixuan
- * @Date: 2018/8/20 9:46
+ * @Date: 2018/8/20 9:47
  */
 @Service
 public class LiantongInterfaceRegist {
