@@ -421,7 +421,6 @@ public class CreditService {
             return ProjectErrorInformation.businessError5("");
 
         }
-        System.out.println(""+System.currentTimeMillis());
         // 判断接口是否存在
         List<Map<String, String>> interfaceInformation = creditMapper.getInterfaceInformation(method, null);
         if (interfaceInformation.isEmpty()) {
@@ -489,7 +488,6 @@ public class CreditService {
             analysisInformation(systemError12, "isEmpty", bizParams, method, account, null, null,uuid);
             return systemError12;
         }
-        System.out.println(""+System.currentTimeMillis());
         logger.info("***请求的接口信息为***" + providerCode + "公司的" + method + "接口 ,参数为：" + jsonObject);
 
         //验证完成开始调用服务
