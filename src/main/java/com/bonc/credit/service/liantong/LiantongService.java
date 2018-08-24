@@ -63,12 +63,9 @@ public class LiantongService extends LiantongHelper {
             map.put("certType",idType);
         }
         map.put("certCode",MD5Builder.md5(idCard));
-        map.put("userName",MD5Builder.md5(name));
+        map.put("userName",MD5Builder.EncoderByMd5ByGBK(name));
 
-        Long a = System.currentTimeMillis();
         String response = LiantongHelper.getRes(method,map);
-        Long b =System.currentTimeMillis();
-        logger.info("上游响应时间："+(b-a));
 
         if (StringUtils.isEmpty(response)){
             return ProjectErrorInformation.businessError1(title);
@@ -150,10 +147,7 @@ public class LiantongService extends LiantongHelper {
         map.put("sendTelNo", mobile);
         map.put("username",name);
 
-        Long a = System.currentTimeMillis();
         String response = LiantongHelper.getRes(method,map);
-        Long b =System.currentTimeMillis();
-        logger.info("上游响应时间："+(b-a));
 
         if (StringUtils.isEmpty(response)){
             return ProjectErrorInformation.businessError1(title);
@@ -232,10 +226,7 @@ public class LiantongService extends LiantongHelper {
         map.put("certCode",idCard);
         map.put("userName",name);
 
-        Long a = System.currentTimeMillis();
         String response = LiantongHelper.getRes(method,map);
-        Long b =System.currentTimeMillis();
-        logger.info("上游响应时间："+(b-a));
 
         if (StringUtils.isEmpty(response)){
             return ProjectErrorInformation.businessError1(title);

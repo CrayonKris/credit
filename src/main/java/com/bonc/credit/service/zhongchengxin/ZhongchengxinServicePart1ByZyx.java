@@ -56,12 +56,9 @@ public class ZhongchengxinServicePart1ByZyx {
 
         String sign = ZhongchengxinHelper.buildSign(reqMap);
         reqMap.put("sign", sign);
-        Long aa=System.currentTimeMillis();
         String response = ZhongchengxinHelper.doGet("/telecom/identity/3mo/t1/noca", reqMap);
 //        String response = ZhongchengxinHelper.doGetByProxy("/telecom/identity/3mo/t1/noca", reqMap);
 //        String response = "{\"resCode\":\"2060\",\"resMsg\":\"匹配成功\",\"tid\":\"3C21301615343215872821202\",\"sign\":\"61B4D30FE6A37CFC78EE6DD96DFCC292\",\"reqId\":\"BONC1534321512848R663\"}";
-        Long bb=System.currentTimeMillis();
-        logger.info("上游请求时长："+(bb-aa)+"ms");
         logger.info(mobile + " response >> " + response);
 
         if (response == null || response.equals("")) {
@@ -174,12 +171,9 @@ public class ZhongchengxinServicePart1ByZyx {
 
         String sign = ZhongchengxinHelper.buildSign(reqMap);
         reqMap.put("sign", sign);
-        Long aa=System.currentTimeMillis();
         String response = ZhongchengxinHelper.doGet("identity/auth", reqMap);
 //        String response = ZhongchengxinHelper.doGetByProxy("identity/auth", reqMap);
 //        String response = "{\"resCode\":\"2060\",\"resMsg\":\"匹配成功\",\"tid\":\"3C21301615343215872821202\",\"sign\":\"61B4D30FE6A37CFC78EE6DD96DFCC292\",\"reqId\":\"BONC1534321512848R663\"}";
-        Long bb=System.currentTimeMillis();
-        logger.info("上游请求时长："+(bb-aa)+"ms");
         logger.info(" response >> " + response);
 
         if (response == null || response.equals("")) {

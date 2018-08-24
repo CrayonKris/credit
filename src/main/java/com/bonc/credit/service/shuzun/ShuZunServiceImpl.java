@@ -54,7 +54,6 @@ public class ShuZunServiceImpl extends ShuZunHelper implements ShuZunService {
         String sign = ShuZunHelper.getSign(map);
 
         logger.info("签名sign：" + sign);
-        Long tt1 = System.currentTimeMillis();
 
 
         String urlResult = ShuZunHelper.getUrlResult(sign, map);
@@ -63,10 +62,7 @@ public class ShuZunServiceImpl extends ShuZunHelper implements ShuZunService {
         logger.info("response >>> " + response);
 //        String response = "{\"resCode\":\"0000\",\"resMsg\":\"请求成功\",\"tranNo\":null,\"sign\":\"D123F1CC7378B91FE646633A74444BDC\",\"data\":[{\"statusCode\":1,\"statusMsg\":\"查询成功,查得结果\",\"quotaID\":\"MD004\",\"quotaValue\":\"1\",\"channel\":1}]}";
 
-        Long tt2 = System.currentTimeMillis();
 
-//        System.out.println("上游响应时间  "+ (tt2-tt1));
-        logger.info("上游响应时间 "+ (tt2-tt1));
         if (response == null || response.equals("")) {
 
             return ProjectErrorInformation.businessError1(title);

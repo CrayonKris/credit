@@ -45,12 +45,8 @@ public class TianYiService extends TianyiHelper{
         jsonParam.put("idCardNum",idCard);
 
         //发送请求
-        Long a = System.currentTimeMillis();
-        System.out.println(a);
         String response = TianyiHelper.getResponse(method,jsonParam);
 //        String response = "{\"credit\":{\"header\":{\"version\":\"0100\",\"testFlag\":1,\"activityCode\":\"1005\",\"actionCode\":1,\"reqSys\":\"dongfangguoxin001\",\"reqChannel\":\"0\",\"reqTransID\":\"BONC1534408678389R980\",\"reqDate\":\"20180816\",\"reqDateTime\":\"20180816163758\",\"rcvSys\":\"123456\",\"rcvTransID\":\"10180816163758000002178488087221\",\"rcvDate\":\"20180816\",\"rcvDateTime\":\"20180816163759\",\"rspCode\":\"90002\",\"rspDesc\":\"查无记录\",\"authorizationCode\":\"890a1377c6034649a2c834ab7a907e75\"},\"body\":null,\"mac\":\"093f2b2e94d7e75a6bb957caad91ea74\"}}\n";
-        Long b = System.currentTimeMillis();
-        logger.info("上游响应时间："+(b-a));
         if (StringUtils.isEmpty(response)){
             return ProjectErrorInformation.businessError1(title);
         }
