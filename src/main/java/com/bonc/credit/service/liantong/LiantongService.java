@@ -26,6 +26,7 @@ public class LiantongService extends LiantongHelper {
      * @return
      */
     public String getThreeElementsMd5(JSONObject bizParams){
+
         String title = "运营商三要素详版-MD5";
         String method = "uniquecheck/txCheckUser.do";
 
