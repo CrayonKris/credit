@@ -22,7 +22,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 该账户审核中或已停用
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError1(String title) {
@@ -36,7 +36,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * appKey不存在或已失效
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError2(String title) {
@@ -50,7 +50,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * IP验证失败
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError3(String title) {
@@ -64,7 +64,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * token验证失败
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError4(String title) {
@@ -78,7 +78,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 请与相关人员联系
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError5(String title) {
@@ -92,7 +92,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 解析错误
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError6(String title) {
@@ -106,7 +106,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 接口未授权
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError7(String title) {
@@ -120,7 +120,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 过于频繁，请稍候再试
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError8(String title) {
@@ -134,7 +134,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 系统异常
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError9(String title) {
@@ -148,7 +148,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 账户余额不足
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError10(String title) {
@@ -162,7 +162,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 接口不存在
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError11(String title) {
@@ -173,10 +173,10 @@ public class ProjectErrorInformation {
 		logger.info("接口访问未通过原因  >>>> "+ret.toString());
 		return ret.toString();
 	}
-	
+
 	/**
 	 * 接口已停用
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError12(String title) {
@@ -187,10 +187,10 @@ public class ProjectErrorInformation {
 		logger.info("接口访问未通过原因  >>>> "+ret.toString());
 		return ret.toString();
 	}
-	
+
 	/**
 	 * 用户信息验证失败
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError13(String title) {
@@ -201,10 +201,10 @@ public class ProjectErrorInformation {
 		logger.info("接口访问未通过原因  >>>> "+ret.toString());
 		return ret.toString();
 	}
-	
+
 	/**
 	 * 该产品未配置
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String systemError14(String title) {
@@ -218,10 +218,10 @@ public class ProjectErrorInformation {
 	
 	
 	/*******************     系统级错误码              *******************/
-	
+
 	/**
 	 * 调用失败
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String businessError1(String title) {
@@ -235,7 +235,7 @@ public class ProjectErrorInformation {
 
 	/**
 	 * 无数据
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String businessError2(String title) {
@@ -246,9 +246,11 @@ public class ProjectErrorInformation {
 		logger.info("接口访问未通过原因  >>>> "+ret.toString());
 		return ret.toString();
 	}
+
 	/**
-	 * 该接口不支持联通/移动/电信用户   
-	 * @param ret
+	 * 该接口不支持联通/移动/电信用户
+	 * @param title
+	 * @param operator
 	 * @return
 	 */
 	public static String businessError3(String title,String operator) {
@@ -259,9 +261,10 @@ public class ProjectErrorInformation {
 		logger.info("接口访问未通过原因  >>>> "+ret.toString());
 		return ret.toString();
 	}
+
 	/**
 	 * 其他错误
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String businessError4(String title) {
@@ -272,9 +275,10 @@ public class ProjectErrorInformation {
 		logger.info("接口访问未通过原因  >>>> "+ret.toString());
 		return ret.toString();
 	}
+
 	/**
 	 * 参数错误
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String businessError5(String title) {
@@ -285,9 +289,10 @@ public class ProjectErrorInformation {
 		logger.info("接口访问未通过原因  >>>> "+ret.toString());
 		return ret.toString();
 	}
+
 	/**
 	 * 无效手机号码
-	 * @param ret
+	 * @param title
 	 * @return
 	 */
 	public static String businessError6(String title) {
