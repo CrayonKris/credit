@@ -6,17 +6,41 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 /**
  * @Author: ZQ
  * @Date: 2018/8/7 16:36
  */
 @Service
-public class TianYiService extends TianyiHelper{
+public class TianYiServiceImpl extends TianyiHelper implements TianyiService{
 
-    private static final Logger logger = Logger.getLogger(TianYiService.class);
+    private static final Logger logger = Logger.getLogger(TianYiServiceImpl.class);
     //工作信息
-    public String getJob(JSONObject bizParams){
 
+    @Override
+    public String getJobInfo(JSONObject bizParams) {
+        return null;
+    }
+
+    @Override
+    public String getHomeInfo(JSONObject bizParams) {
+        return null;
+    }
+
+    @Override
+    public String getPhoneNameInfo(JSONObject bizParams) {
+        return null;
+    }
+
+    @Override
+    public String getCardNameInfo(JSONObject bizParams) {
+        return null;
+    }
+
+    @Override
+    public String getCardInfo(JSONObject bizParams) {
         return null;
     }
 
@@ -39,13 +63,20 @@ public class TianYiService extends TianyiHelper{
         if (StringUtils.isEmpty(userName)||StringUtils.isEmpty(mobile)||StringUtils.isEmpty(idCard)){
             return ProjectErrorInformation.businessError5(title);
         }
+
+        String name = "";
+        try {
+            name = URLDecoder.decode(userName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("中文编码异常");
+        }
         JSONObject jsonParam = new JSONObject();
-        jsonParam.put("name",userName);
+        jsonParam.put("name",name);
         jsonParam.put("mobile",mobile);
         jsonParam.put("idCardNum",idCard);
 
         //发送请求
-        String response = TianyiHelper.getResponse(method,jsonParam);
+        String response = getResponse(method,jsonParam);
 //        String response = "{\"credit\":{\"header\":{\"version\":\"0100\",\"testFlag\":1,\"activityCode\":\"1005\",\"actionCode\":1,\"reqSys\":\"dongfangguoxin001\",\"reqChannel\":\"0\",\"reqTransID\":\"BONC1534408678389R980\",\"reqDate\":\"20180816\",\"reqDateTime\":\"20180816163758\",\"rcvSys\":\"123456\",\"rcvTransID\":\"10180816163758000002178488087221\",\"rcvDate\":\"20180816\",\"rcvDateTime\":\"20180816163759\",\"rspCode\":\"90002\",\"rspDesc\":\"查无记录\",\"authorizationCode\":\"890a1377c6034649a2c834ab7a907e75\"},\"body\":null,\"mac\":\"093f2b2e94d7e75a6bb957caad91ea74\"}}\n";
         if (StringUtils.isEmpty(response)){
             return ProjectErrorInformation.businessError1(title);
@@ -82,6 +113,34 @@ public class TianYiService extends TianyiHelper{
             return ProjectErrorInformation.businessError1(title);
         }
         return sentJson(title,code,desc,isbilling);
+    }
+
+    @Override
+    public String getMobilecardInfoII(JSONObject bizParams) {
+        String method = "threeElementsCheckSim.json";
+        String title = "";
+
+        return "";
+    }
+
+    @Override
+    public String getBankcard4Info(JSONObject bizParams) {
+        return null;
+    }
+
+    @Override
+    public String getBankcard5Info(JSONObject bizParams) {
+        return null;
+    }
+
+    @Override
+    public String getUserState(JSONObject bizParams) {
+        return null;
+    }
+
+    @Override
+    public String getOnlineTime(JSONObject bizParams) {
+        return null;
     }
 
     //返回结果

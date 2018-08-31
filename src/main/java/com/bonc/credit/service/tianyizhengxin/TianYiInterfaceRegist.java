@@ -20,7 +20,7 @@ public class TianYiInterfaceRegist {
     private static final Logger logger = Logger.getLogger(ZhongChengXinInterfaceRegist.class);
 
     @Autowired
-    TianYiService tianYiService;
+    TianyiService tianyiService;
 
     @Autowired
     TianYiServiceByZyx tianYiServiceByZyx;
@@ -33,31 +33,37 @@ public class TianYiInterfaceRegist {
         Long aa=System.currentTimeMillis();
         if ("BONC2018081714".equals(providerCode)) {
             //获取工作信息
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getJobInfo(bizParams);
         } else if ("BONC2018081715".equals(providerCode)) {
             //获取家庭信息
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getHomeInfo(bizParams);
         } else if ("BONC2018081716".equals(providerCode)) {
             //全网二要素验证，手机号+姓名
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getPhoneNameInfo(bizParams);
         } else if ("BONC2018081717".equals(providerCode)) {
             //全网二要素验证，手机号+身份证
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getCardNameInfo(bizParams);
         } else if ("BONC2018081718".equals(providerCode)) {
             //公安身份验证
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getCardInfo(bizParams);
         } else if ("BONC2018081614".equals(providerCode)) {
             //全网运营商三要素验证，详版
-            result = tianYiService.getMobilecardInfo(bizParams);
+            result = tianyiService.getMobilecardInfo(bizParams);
         } else if ("BONC2018081720".equals(providerCode)) {
             //全网运营商三要素验证，简版
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getMobilecardInfoII(bizParams);
         } else if ("BONC2018081722".equals(providerCode)) {
             //银行卡四要素验证
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getBankcard4Info(bizParams);
         } else if ("BONC2018081723".equals(providerCode)) {
             //银行卡五要素验证
-            result = tianYiService.getJob(bizParams);
+            result = tianyiService.getBankcard5Info(bizParams);
+        } else if ("BONC2018081723".equals(providerCode)) {
+            //全网运营商手机在网状态查询
+            result = tianyiService.getUserState(bizParams);
+        } else if ("BONC2018081723".equals(providerCode)) {
+            //全网运营商手机入网时长查询
+            result = tianyiService.getOnlineTime(bizParams);
         } else {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("interface", "");
