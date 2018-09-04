@@ -11,6 +11,11 @@ public interface TianyiService {
 
     String getCardNameInfo(JSONObject bizParams);
 
+    /**
+     * 公安身份验证
+     * @param bizParams
+     * @return
+     */
     String getCardInfo(JSONObject bizParams);
 
     /**
@@ -31,7 +36,17 @@ public interface TianyiService {
 
     String getBankcard5Info(JSONObject bizParams);
 
+    /**
+     * 全网运营商手机在网状态查询
+     * @param bizParams
+     * @return
+     */
     String getUserState(JSONObject bizParams);
 
+    /**
+     * 全网运营商手机入网时长查询
+     * @param bizParams
+     * @return
+     */
     String getOnlineTime(JSONObject bizParams);
 }

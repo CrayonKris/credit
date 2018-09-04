@@ -323,7 +323,7 @@ public class CreditService {
 
         // 若接口不需要手机号，需要在这里登记
         if (method.equals("CSM170719_1658") || method.equals("CSM170719_1660") || method.equals("CSM171017_1126")||
-                method.equals("CSM180710_1628")||method.equals("CSM180706_1731")) {
+                method.equals("CSM180710_1628")||method.equals("CSM180706_1731")||method.equals("BONC2018081718")) {
             jsonObject.put("mobile", "17600000000");
         }
 
@@ -439,7 +439,7 @@ public class CreditService {
         // 若接口不需要手机号，需要在这里登记
         if (method.equals("CSM170719_1658") || method.equals("CSM170719_1660") || method.equals("CSM171017_1126") ||
                 "CSM180706_1731".equals(method)||"CSM180710_1628".equals(method)||"CSM180801_1531".equals(method)||
-                "CSM180801_1537".equals(method)||"CSM180816_1848".equals(method)) {
+                "CSM180801_1537".equals(method)||"CSM180816_1848".equals(method)||method.equals("BONC2018081718")) {
             jsonObject.put("mobile", "17600000000");
         }
 
@@ -856,7 +856,7 @@ public class CreditService {
         // 若接口不需要手机号，需要在这里登记
         if (method.equals("CSM170719_1658") || method.equals("CSM170719_1660") || method.equals("CSM171017_1126")
                 ||method.equals("CSM180710_1628")||method.equals("CSM180706_1731")||"CSM180801_1531".equals(method)||
-                "CSM180801_1537".equals(method)) {
+                "CSM180801_1537".equals(method)||"BONC2018081718".equals(method)) {
             jsonObject.put("mobile", "17600000000");
         }
 

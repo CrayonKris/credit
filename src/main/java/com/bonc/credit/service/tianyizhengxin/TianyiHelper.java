@@ -33,7 +33,7 @@ public class TianyiHelper {
         String reqTransID = getReqId();
         String authorizationCode = String.valueOf(UUID.randomUUID()).replaceAll("-","");
         Map bodyMap = param;
-        String response2 = CreditApplication.invoke(newurl,1,reqsys,reqTransID,authorizationCode,bodyMap,transKey);
+        String response2 = CreditApplication.invoke(newurl,5,reqsys,reqTransID,authorizationCode,bodyMap,transKey);
         return response2;
     }
 

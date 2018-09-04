@@ -55,13 +55,13 @@ public class TianYiInterfaceRegist {
         } else if ("BONC2018081722".equals(providerCode)) {
             //银行卡四要素验证
             result = tianyiService.getBankcard4Info(bizParams);
-        } else if ("BONC2018081723".equals(providerCode)) {
+        } else if ("BONC2018081728".equals(providerCode)) {
             //银行卡五要素验证
             result = tianyiService.getBankcard5Info(bizParams);
         } else if ("BONC2018081723".equals(providerCode)) {
             //全网运营商手机在网状态查询
             result = tianyiService.getUserState(bizParams);
-        } else if ("BONC2018081723".equals(providerCode)) {
+        } else if ("BONC2018081729".equals(providerCode)) {
             //全网运营商手机入网时长查询
             result = tianyiService.getOnlineTime(bizParams);
         } else {
