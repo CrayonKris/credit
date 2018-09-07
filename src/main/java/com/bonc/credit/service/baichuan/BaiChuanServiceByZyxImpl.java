@@ -233,6 +233,7 @@ public class BaiChuanServiceByZyxImpl implements BaiChuanServiceByZyx {
         jsonparam.put("mobile",mobile);
         String param = getString(serviceName,jsonparam);
         String response = BaiChuanHelper.getResponse(param);
+//        String response = "{\"message\":\"成功\",\"code\":\"1\"}";
         logger.info(" response >> " + response);
 
         String code = "B0001";
