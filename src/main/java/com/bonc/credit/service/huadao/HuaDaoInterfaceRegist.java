@@ -1,5 +1,6 @@
 package com.bonc.credit.service.huadao;
 
+import com.bonc.util.MqUtil;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class HuaDaoInterfaceRegist {
 	private HuadaoServicePart2 huadaoServicePart2;
 
 	@Autowired
-	private RabbitTemplate rabbitTemplate;
+	MqUtil mqUtil;
 
 	public String distributeInterfaceRegist(String providerCode, JSONObject bizParams, String uuid) {
 		JSONObject jsonObject = new JSONObject();
@@ -110,11 +111,7 @@ public class HuaDaoInterfaceRegist {
 		}
 		Long bb=System.currentTimeMillis();
 		Long allTime=bb-aa;
-		Map<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("all_time",""+allTime);
-		hashMap.put("record_id",uuid);
-		hashMap.put("time_type","upper");
-		rabbitTemplate.convertAndSend("addRecordTime", hashMap);
+		mqUtil.addRecordTime(allTime,uuid,bizParams,bb);
 		return result;
 	}
 }

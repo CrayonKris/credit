@@ -2,13 +2,17 @@ package com.bonc.credit.service.tianyizhengxin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bonc.credit.service.zhongchengxin.ZhongChengXinInterfaceRegist;
+import com.bonc.util.MqUtil;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.SimpleFormatter;
 
 /**
  * @Author: Miracle
@@ -27,6 +31,8 @@ public class TianYiInterfaceRegist {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    MqUtil mqUtil;
 
     public String distributeInterfaceRegist(String providerCode, JSONObject bizParams, String uuid) {
         String result=null;
@@ -74,11 +80,7 @@ public class TianYiInterfaceRegist {
         }
         Long bb=System.currentTimeMillis();
         Long allTime=bb-aa;
-        Map<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("all_time",""+allTime);
-        hashMap.put("record_id",uuid);
-        hashMap.put("time_type","upper");
-        rabbitTemplate.convertAndSend("addRecordTime", hashMap);
+        mqUtil.addRecordTime(allTime,uuid,bizParams,bb);
         return result;
 
     }

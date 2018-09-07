@@ -1,10 +1,13 @@
 package com.bonc.credit.service.baichuan;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bonc.util.MqUtil;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +19,9 @@ public class BaiChuanInterfaceRegist {
     private BaiChuanServiceByZyx baiChuanServiceByZyx;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    MqUtil mqUtil;
 
     public String distributeInterfaceRegist(String providerCode, JSONObject bizParams, String uuid) {
         JSONObject jsonObject = new JSONObject();
@@ -32,7 +38,7 @@ public class BaiChuanInterfaceRegist {
             result=baiChuanServiceByZyx.getTimeByPhone(bizParams);
         } else if ("CSM180801_1534".equals(providerCode)){
             //手机号状态
-            result=baiChuanServiceByZyx.getPhoneStatus(bizParams);
+            result= baiChuanServiceByZyx.getPhoneStatus(bizParams);
         } else if ("CSM180801_1535".equals(providerCode)){
             //验证手机号身份证姓名是否一致
             result=baiChuanService.getMobilecardInfo(bizParams);
@@ -51,11 +57,8 @@ public class BaiChuanInterfaceRegist {
         }
         Long bb=System.currentTimeMillis();
         Long allTime=bb-aa;
-        Map<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("all_time",""+allTime);
-        hashMap.put("record_id",uuid);
-        hashMap.put("time_type","upper");
-        rabbitTemplate.convertAndSend("addRecordTime", hashMap);
+
+        mqUtil.addRecordTime(allTime,uuid,bizParams,bb);
         return result;
     }
 }

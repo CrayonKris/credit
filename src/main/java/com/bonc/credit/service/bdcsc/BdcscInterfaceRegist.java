@@ -1,5 +1,6 @@
 package com.bonc.credit.service.bdcsc;
 
+import com.bonc.util.MqUtil;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class BdcscInterfaceRegist {
 	@Autowired
 	private BdcscServicePart1 bdcscServicePart1;
 	@Autowired
-	private RabbitTemplate rabbitTemplate;
+	MqUtil mqUtil;
 
 	/**
 	 * 电信云项目接口注册
@@ -394,11 +395,7 @@ public class BdcscInterfaceRegist {
 		}
 		Long bb=System.currentTimeMillis();
 		Long allTime=bb-aa;
-		Map<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("all_time",""+allTime);
-		hashMap.put("record_id",uuid);
-		hashMap.put("time_type","upper");
-		rabbitTemplate.convertAndSend("addRecordTime", hashMap);
+		mqUtil.addRecordTime(allTime,uuid,bizParams,bb);
 		return result;
 	}
 }

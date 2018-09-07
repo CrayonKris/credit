@@ -99,7 +99,9 @@
 		insert into sjc_record_alltime
 		VALUE (#{record_id},
 			#{all_time},
-			#{time_type})
+			#{time_type},
+			#{netType},
+			#{final_time})
 	</insert>
 	
 </mapper>

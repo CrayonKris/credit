@@ -1,5 +1,6 @@
 package com.bonc.credit.service.tianchuang;
 
+import com.bonc.util.MqUtil;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +31,8 @@ public class TianChuangInterfaceRegist {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
+	@Autowired
+	MqUtil mqUtil;
 
 	public String distributeInterfaceRegist(String providerCode, JSONObject bizParams, String uuid) {
 
@@ -78,11 +83,7 @@ public class TianChuangInterfaceRegist {
 		}
 		Long bb=System.currentTimeMillis();
 		Long allTime=bb-aa;
-		Map<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("all_time",""+allTime);
-		hashMap.put("record_id",uuid);
-		hashMap.put("time_type","upper");
-		rabbitTemplate.convertAndSend("addRecordTime", hashMap);
+		mqUtil.addRecordTime(allTime,uuid,bizParams,bb);
 		return result;
 
 	}
