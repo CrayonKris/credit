@@ -218,7 +218,7 @@ public class CreditService {
         if ("CSM180706_1628".equals(method)){
             providerCode = "zhongchengxin";
         }if ("CSM180706_1731".equals(method)){
-            providerCode = "baichuan";
+            providerCode = "zhongchengxin";
         }
         analysisInformation(visitResult, providerCode, bizParams, method, account, null, null,uuid);
 
