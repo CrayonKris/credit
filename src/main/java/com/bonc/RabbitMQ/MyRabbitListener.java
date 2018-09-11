@@ -31,7 +31,11 @@ public class MyRabbitListener {
 	@RabbitListener(queues = "addRecord")
 	public void addMessage(Map<String,Object> map){
 		logger.info("RabbitMQ队列取数据中addRecord。。。");
-		creditMapper.addVisitRecord(map);
+		try{
+            creditMapper.addVisitRecord(map);
+        }catch (Exception e){
+            logger.info("插入访问记录数据异常" + e);
+        }
 		logger.info("RabbitMQ插入appKey:bonc的访问记录  >> " + map);
 	}
 	
