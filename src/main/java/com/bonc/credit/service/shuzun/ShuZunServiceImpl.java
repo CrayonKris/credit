@@ -200,17 +200,18 @@ public class ShuZunServiceImpl extends ShuZunHelper implements ShuZunService {
                         desc = "三维验证不一致，具体不一致未知";
                         break;
                     }
+                }
+            } else if ("2".equals(statusCode)) { // 查询成功无数据
+
+                switch (code){
                     case "0,-1,-1": {
                         desc = "身份证-手机号未知，姓名手机号未知";
                         break;
                     }
-                    default: {
+                    case "-1" : {
                         desc = "库无数据";
                     }
                 }
-            } else if ("2".equals(statusCode)) { // 查询成功无数据
-                desc = "查询成功无数据";
-                code = "2"; // 查询无数据
             } else { // 查询失败
                 desc = "查询失败";
                 code = "3"; // 查询无数据
@@ -229,7 +230,6 @@ public class ShuZunServiceImpl extends ShuZunHelper implements ShuZunService {
             isbilling = "1";
 
         } else if ("2006".equals(status)) {
-
             code = "B0002";
             desc = "请求没有查询到结果";
 

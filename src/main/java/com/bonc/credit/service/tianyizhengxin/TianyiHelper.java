@@ -11,12 +11,15 @@ import java.util.UUID;
 @Service
 public class TianyiHelper {
 
+    //生产URL
+    //https://api.tycredit.com
+
     //测试URL
     //秘钥地址
     private static final String crediturl = "https://apitest.tycredit.com/credit-front-http/credit/";
     //业务地址
     private static final String unifiedurl = "https://apitest.tycredit.com/credit-front-http/unified/";
-    //获取的秘钥
+    //获取的测试秘钥
     private static final String transKey = "44bb4249967beea6";
     //机构代码
     private static final String reqsys = "dongfangguoxin001";
