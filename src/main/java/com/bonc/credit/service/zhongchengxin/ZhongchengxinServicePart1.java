@@ -288,7 +288,7 @@ public class ZhongchengxinServicePart1 {
         // 银行卡号
         String card = bizParams.getString("bankCardNum");
 
-        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(card) || StringUtils.isEmpty(cid)) {
+        if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(card) || StringUtils.isEmpty(cid)) {
             return ProjectErrorInformation.businessError5(title);
         }
         try {
@@ -389,7 +389,7 @@ public class ZhongchengxinServicePart1 {
         String card = bizParams.getString("bankCardNum");
         String mobile = bizParams.getString("mobile");
 
-        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(cid) || StringUtils.isEmpty(card) || StringUtils.isEmpty(mobile)) {
+        if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(cid) || StringUtils.isEmpty(card) || StringUtils.isEmpty(mobile)) {
             return ProjectErrorInformation.businessError5(title);
         }
         try {
@@ -492,7 +492,7 @@ public class ZhongchengxinServicePart1 {
         String cid = bizParams.getString("idCard");
         // 手机号码
         String mobile = bizParams.getString("mobile");
-        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(cid) || StringUtils.isEmpty(mobile)) {
+        if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(cid) || StringUtils.isEmpty(mobile)) {
             return ProjectErrorInformation.businessError5(title);
         }
         try {
@@ -638,14 +638,14 @@ public class ZhongchengxinServicePart1 {
         String mobile = bizParams.getString("mobile");
         String username = bizParams.getString("userName");
         String name = "";
+
+        if (StringUtils.isEmpty(username)||StringUtils.isEmpty(idcard)||StringUtils.isEmpty(mobile)){
+            return ProjectErrorInformation.businessError5(title);
+        }
         try {
             name = URLDecoder.decode(username, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("中文编码异常");
-        }
-
-        if (StringUtils.isEmpty(name)||StringUtils.isEmpty(idcard)||StringUtils.isEmpty(mobile)){
-            return ProjectErrorInformation.businessError5(title);
         }
 
         Map<String, String> map = new HashMap<>();
