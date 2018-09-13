@@ -1,6 +1,7 @@
 package com.bonc.credit.service.zhongchengxin;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bonc.util.ProjectErrorInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -30,20 +31,15 @@ public class ZhongchengxinServicePart1ByZyx {
         String mobile = bizParams.getString("mobile");
         String userName = bizParams.getString("userName");
         String name = "";
+        String cid = bizParams.getString("idCard");
+
+        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
+            return ProjectErrorInformation.businessError5(title);
+        }
         try {
             name = URLDecoder.decode(userName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("中文编码异常");
-        }
-        String cid = bizParams.getString("idCard");
-
-        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
-            JSONObject ret = new JSONObject();
-            ret.put("interface", title);
-            ret.put("code", "S0001");
-            ret.put("desc", "参数错误");
-            ret.put("isbilling", "0");
-            return ret.toString();
         }
 
 
@@ -148,18 +144,13 @@ public class ZhongchengxinServicePart1ByZyx {
         String idCard = bizParams.getString("idCard");
         String userName = bizParams.getString("userName");
         String name = "";
+        if (null == idCard || "".equals(idCard) || null == userName || "".equals(userName)) {
+            return ProjectErrorInformation.businessError5(title);
+        }
         try {
             name = URLDecoder.decode(userName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("中文编码异常");
-        }
-        if (null == idCard || "".equals(idCard) || null == userName || "".equals(userName)) {
-            JSONObject ret = new JSONObject();
-            ret.put("interface", title);
-            ret.put("code", "S0001");
-            ret.put("desc", "参数错误");
-            ret.put("isbilling", "0");
-            return ret.toString();
         }
 
 

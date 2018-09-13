@@ -41,20 +41,15 @@ public class ZhongchengxinServicePart1 {
         String mobile = bizParams.getString("mobile");
         String userName = bizParams.getString("userName");
         String name = "";
+        String cid = bizParams.getString("idCard");
+
+        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
+            return ProjectErrorInformation.businessError5(title);
+        }
         try {
             name = URLDecoder.decode(userName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("中文编码异常");
-        }
-        String cid = bizParams.getString("idCard");
-
-        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
-            JSONObject ret = new JSONObject();
-            ret.put("interface", title);
-            ret.put("code", "S0001");
-            ret.put("desc", "参数错误");
-            ret.put("isbilling", "0");
-            return ret.toString();
         }
 
         String idType = bizParams.containsKey("idType") ? bizParams.get("idType").toString() : "";
@@ -168,20 +163,16 @@ public class ZhongchengxinServicePart1 {
         String mobile = bizParams.getString("mobile");
         String userName = bizParams.getString("userName");
         String name = "";
+        String cid = bizParams.getString("idCard");
+
+        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
+
+            return ProjectErrorInformation.businessError5(title);
+        }
         try {
             name = URLDecoder.decode(userName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("中文编码异常");
-        }
-        String cid = bizParams.getString("idCard");
-
-        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
-            JSONObject ret = new JSONObject();
-            ret.put("interface", title);
-            ret.put("code", "S0001");
-            ret.put("desc", "参数错误");
-            ret.put("isbilling", "0");
-            return ret.toString();
         }
 
 
@@ -292,18 +283,18 @@ public class ZhongchengxinServicePart1 {
         // 姓名
         String userName = bizParams.getString("userName");
         String name = "";
-        try {
-            name = URLDecoder.decode(userName, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("中文编码异常");
-        }
         // 身份证号码，字母 X 大写
         String cid = bizParams.getString("idCard");
         // 银行卡号
         String card = bizParams.getString("bankCardNum");
 
         if (StringUtils.isEmpty(name) || StringUtils.isEmpty(card) || StringUtils.isEmpty(cid)) {
-            return paramsError(title, "S0001", "参数错误");
+            return ProjectErrorInformation.businessError5(title);
+        }
+        try {
+            name = URLDecoder.decode(userName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("中文编码异常");
         }
 
         Map<String, String> req = new HashMap<>();
@@ -360,7 +351,7 @@ public class ZhongchengxinServicePart1 {
             }
             case "2031": {
                 ret.put("code", "1");
-                ret.put("desc", "验证失败");
+                ret.put("desc", "验证不一致");
                 ret.put("isbilling", "1");
                 break;
             }
@@ -392,11 +383,6 @@ public class ZhongchengxinServicePart1 {
         // 姓名
         String userName = bizParams.getString("userName");
         String name = "";
-        try {
-            name = URLDecoder.decode(userName, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("中文编码异常");
-        }
         // 身份证号码，字母 X 大写
         String cid = bizParams.getString("idCard");
         // 银行卡号
@@ -404,7 +390,12 @@ public class ZhongchengxinServicePart1 {
         String mobile = bizParams.getString("mobile");
 
         if (StringUtils.isEmpty(name) || StringUtils.isEmpty(cid) || StringUtils.isEmpty(card) || StringUtils.isEmpty(mobile)) {
-            return paramsError(title, "S0001", "参数错误");
+            return ProjectErrorInformation.businessError5(title);
+        }
+        try {
+            name = URLDecoder.decode(userName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("中文编码异常");
         }
 
         Map<String, String> req = new HashMap<>();
@@ -497,17 +488,17 @@ public class ZhongchengxinServicePart1 {
         String method2 = "telecom/idencheck/noca";
         String method = "";
 
-        try {
-            name = URLDecoder.decode(userName, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("中文编码异常");
-        }
         // 身份证号码，字母 X 大写
         String cid = bizParams.getString("idCard");
         // 手机号码
         String mobile = bizParams.getString("mobile");
         if (StringUtils.isEmpty(name) || StringUtils.isEmpty(cid) || StringUtils.isEmpty(mobile)) {
-            return paramsError(title, "S0001", "参数错误");
+            return ProjectErrorInformation.businessError5(title);
+        }
+        try {
+            name = URLDecoder.decode(userName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("中文编码异常");
         }
 
         //判断运营商
@@ -650,7 +641,7 @@ public class ZhongchengxinServicePart1 {
         try {
             name = URLDecoder.decode(username, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("中文编码错误");
+            throw new RuntimeException("中文编码异常");
         }
 
         if (StringUtils.isEmpty(name)||StringUtils.isEmpty(idcard)||StringUtils.isEmpty(mobile)){
@@ -770,12 +761,19 @@ public class ZhongchengxinServicePart1 {
 
     public String getUserTime(JSONObject bizParams) {
         String title = "运营商在网时长";
-        String name = bizParams.getString("userName");
+        String userName = bizParams.getString("userName");
         String mobile = bizParams.getString("mobile");
         String cid = bizParams.getString("idCard");
 
-        if (StringUtils.isEmpty(name)||StringUtils.isEmpty(mobile)||StringUtils.isEmpty(cid)){
+
+        if (StringUtils.isEmpty(userName)||StringUtils.isEmpty(mobile)||StringUtils.isEmpty(cid)){
             return ProjectErrorInformation.businessError5(title);
+        }
+        String name = "";
+        try {
+            name = URLDecoder.decode(userName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("中文编码异常");
         }
         Map<String,String> map = new HashMap<>();
         map.put("name",name);
@@ -858,20 +856,15 @@ public class ZhongchengxinServicePart1 {
         String mobile = bizParams.getString("mobile");
         String userName = bizParams.getString("userName");
         String name = "";
+        String cid = bizParams.getString("idCard");
+
+        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
+            return ProjectErrorInformation.businessError5(title);
+        }
         try {
             name = URLDecoder.decode(userName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("中文编码异常");
-        }
-        String cid = bizParams.getString("idCard");
-
-        if (null == mobile || "".equals(mobile) || null == userName || "".equals(userName)) {
-            JSONObject ret = new JSONObject();
-            ret.put("interface", title);
-            ret.put("code", "S0001");
-            ret.put("desc", "参数错误");
-            ret.put("isbilling", "0");
-            return ret.toString();
         }
 
 
