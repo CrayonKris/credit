@@ -453,7 +453,7 @@ public class ZhongchengxinServicePart1 {
             }
             case "2031": {
                 ret.put("code", "1");
-                ret.put("desc", "验证失败");
+                ret.put("desc", "验证不一致");
                 ret.put("isbilling", "0");
                 break;
             }
